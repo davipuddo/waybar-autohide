@@ -1,5 +1,5 @@
 # waybar-autohide
-A feature to automatically hide the _Waybar_ while not hovering. 
+A feature to automatically hide the Waybar while not hovering. 
 
 This program uses the cursor's **velocity** as a condition, so if your waybar is not reapearing, you might want to **slam** your cursor at the top of the screen :)
 
