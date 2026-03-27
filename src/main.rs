@@ -2,8 +2,10 @@
 
 
 use sysinfo::{System, ProcessesToUpdate};
-use nix::sys::signal::{self, Signal};
-use nix::unistd::Pid;
+use nix::{
+    sys::signal::{self, Signal},
+    unistd::Pid,
+};
 use std::{
     thread::sleep,
     time::Duration,
