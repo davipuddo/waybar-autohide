@@ -5,7 +5,7 @@ This program uses the cursor's **velocity** as a condition, so if your waybar is
 
 # Installation & Setup
 
-Compile with:
+While at the projects root, run :
 ```fish
 cargo build --release
 ```
