@@ -18,4 +18,4 @@ If you are using Waybar with Hyprland you might want to place this in your `hypr
 exec-once = /path/to/autohide
 ```
 
-Obs: Make sure the Waybar is **already running** before this
+Obs: Make sure the Waybar is **already running** before this gets executed
