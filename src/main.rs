@@ -36,7 +36,7 @@ fn get_waybar_pid() -> i32 {
     let self_pid = std::process::id();
 
     let process = sys.processes().iter().find(|tuple| 
-            (tuple.1.name() == target) && (tuple.0.as_u32() != self_pid)
+            (tuple.1.name() == target) && (tuple.0.as_u32() != self_pid) // The second test might not be needed
         );
 
     match process {
@@ -44,7 +44,7 @@ fn get_waybar_pid() -> i32 {
             pid.as_u32() as i32
         }
         None => {
-            panic!("Could not find a process name [Waybar]");
+            panic!("Could not find a process named [waybar]");
         }
     }
 }
