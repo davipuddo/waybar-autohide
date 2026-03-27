@@ -3,6 +3,8 @@ A feature to automatically hide the Waybar while not hovering.
 
 This program uses the cursor's **velocity** as a condition, so if your waybar is not reapearing, you might want to slam your cursor at the top of the screen :)
 
+This feature is **exclusive to Hyprland**, since it uses it's IPC socket go the the current mouse position and the number of active windows.
+
 # Installation & Setup
 
 While at the project's root, run:
@@ -12,7 +14,7 @@ cargo build --release
 The binary file will be located at `target/release/`. Now just execute it and the Waybar should hide itself, unless you hover over it.
 
 
-If you are using Waybar with Hyprland you might want to place this in your `hyprland.conf`, so autohide runs on startup:
+You might want to place this in your `hyprland.conf`, so autohide runs on startup:
 
 ```ini
 exec-once = /path/to/autohide
