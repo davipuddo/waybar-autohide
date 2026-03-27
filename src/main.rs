@@ -84,7 +84,7 @@ fn get_pos() -> i32 {
             } else { eprintln!("Data retrieve over socket failed!"); }
         } else { eprintln!("Data transfer over socket failed!"); }
     } else {
-        eprintln!("Could not connect to the socket!");
+        panic!("Could not connect to the socket!");
     }
     0
 }
