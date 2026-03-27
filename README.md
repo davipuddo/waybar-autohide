@@ -9,7 +9,8 @@ While at the projects root, run :
 ```fish
 cargo build --release
 ```
-The binary file will be located at `target/release/`. Execute the file and waybar should now be hiden, unless you hover over it.
+The binary file will be located at `target/release/`. Now just execute the file and Waybar should now be hiden, unless you hover over it.
+
 
 If you are using Waybar with Hyprland you might want to place this in your `hyprland.conf`, so autohide runs on startup:
 
