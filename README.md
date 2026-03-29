@@ -15,7 +15,7 @@ cargo build --release --bin autohide
 # Build autohide with window detect feature
 cargo build --release --bin autohide_wd
 ```
-The binary file will be located at `target/release/`. Now just execute it and the Waybar should hide itself, unless you hover over it.
+The binary file will be located at `target/release/`. Now just execute it and the Waybar should hide itself, until you hover over it.
 
 
 You might want to place this in your `hyprland.conf`, so autohide runs on startup:
