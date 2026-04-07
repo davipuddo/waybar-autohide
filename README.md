@@ -25,3 +25,19 @@ exec-once = /path/to/autohide
 ```
 
 Obs: Make sure the Waybar is **already running** before this gets executed
+
+## CLI Arguments
+Optionally, you can use the following arguments (Followed by a suitable value) to customize your
+
+- `--name` -> Waybar process name
+    - Default value: "waybar"
+- `--max-retry` -> Max number of retries done if the process Waybar is not found
+    - Default value: 5
+- `--retry-delay` -> Number of seconds to wait before the process is searched again
+    - Default value: 5
+- `--pos-threshold -> Mouse position threshold
+    - Default value: 60
+- `--sleep-time` -> Time to sleep in milliseconds
+    - Default value: 50
+- `--vel-threshold` -> Velocity is NOT normalized with sleep time, so a change in SLEEP_TIME may also require a change in VEL_THRESHOLD
+    - Default value: 50
