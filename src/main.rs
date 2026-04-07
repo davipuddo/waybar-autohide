@@ -8,7 +8,6 @@ use std::{
     env,
 };
 
-use nix::libc::process_vm_writev;
 use util::{
     get_waybar_pid,
     get_pos,
