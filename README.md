@@ -27,7 +27,7 @@ exec-once = /path/to/autohide
 Obs: Make sure the Waybar is **already running** before this gets executed
 
 ## CLI Arguments
-Optionally, you can use the following arguments (Followed by a suitable value) to customize your Autohide settings
+Optionally, you can use the following arguments (Followed by a suitable value) to customize your Autohide settings:
 
 - `--name` -> Waybar process name
     - Default value: "waybar"
