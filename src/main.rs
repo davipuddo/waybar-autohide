@@ -84,7 +84,7 @@ fn main() {
     let mut tries = 0;
 
     while (pid == 0) && (tries < max_retry) {
-        eprintln!("Invalid PID detected. Waybar process could not be found!\nSearching again in 5 seconds.");
+        eprintln!("Invalid PID detected. Waybar process could not be found!\nSearching again in {} seconds.", retry_delay);
         eprintln!("[{}] tries left.", (max_retry-tries));
 
         sleep(Duration::from_secs(retry_delay as u64));

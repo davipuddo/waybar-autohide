@@ -84,7 +84,7 @@ fn main() {
     let mut tries = 0;
 
     while (pid == 0) && (tries < max_retry) {
-        eprintln!("Invalid PID detected. Waybar process could not be found!\nSearching again in 5 seconds.");
+        eprintln!("Invalid PID detected. Waybar process could not be found!\nSearching again in {} seconds.", retry_delay);
         eprintln!("[{}] tries left.", (max_retry-tries));
 
         sleep(Duration::from_secs(retry_delay as u64));
@@ -99,39 +99,20 @@ fn main() {
         // Hide / Show logic
         toggle_waybar(pid);
         let mut ypos = get_pos(&socket_path);  
-        let mut open = false;
 
         loop {
-            let windows = get_workspace_windows(&socket_path);
-            if windows > 0 {
+            let mut windows = get_workspace_windows(&socket_path);
+            if windows == 0 {
+                toggle_waybar(pid);
+                while windows == 0 { 
+                    windows = get_workspace_windows(&socket_path); 
+                    sleep(Duration::from_millis(sleep_time as u64));
+                };
+                toggle_waybar(pid);
+            }
 
-                if open {
-                    toggle_waybar(pid);
-                    open = false;
-                }
-
-                let fullscreen = get_windows_fullscreen(&socket_path);
-                if fullscreen == 0 {
-                    let mut new_ypos = get_pos(&socket_path);
-                    let vel = ypos - new_ypos;
-
-                    if (vel > vel_threshold) && (new_ypos < pos_threshold) {
-                        toggle_waybar(pid);
-                        while new_ypos < pos_threshold {
-                            new_ypos = get_pos(&socket_path);
-                            sleep(Duration::from_millis(sleep_time as u64));
-                        }
-                        toggle_waybar(pid);
-                    }
-                    ypos = new_ypos;
-                }
-            } else {
-
-                if !open {
-                    toggle_waybar(pid);
-                    open = true;
-                }
-
+            let fullscreen = get_windows_fullscreen(&socket_path);
+            if fullscreen == 0 {
                 let mut new_ypos = get_pos(&socket_path);
                 let vel = ypos - new_ypos;
 

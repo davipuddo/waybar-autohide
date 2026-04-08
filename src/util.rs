@@ -20,8 +20,6 @@ pub fn get_waybar_pid(target: &str) -> i32 {
 
     sys.refresh_processes(ProcessesToUpdate::All, true);
     
-    // let target = "waybar";
-
     let process = sys.processes()
                      .iter()
                      .find(|tuple| tuple.1.name() == target);
@@ -31,7 +29,7 @@ pub fn get_waybar_pid(target: &str) -> i32 {
             pid.as_u32() as i32
         }
         None => {
-            eprintln!("Could not find a process named [waybar]");
+            eprintln!("Could not find a process named [{}]", target);
             0
         }
     }
