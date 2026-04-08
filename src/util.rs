@@ -15,12 +15,12 @@ use std::{
 
 
 // Searches for Waybar's PID
-pub fn get_waybar_pid() -> i32 {
+pub fn get_waybar_pid(target: &str) -> i32 {
     let mut sys = System::new_all();
 
     sys.refresh_processes(ProcessesToUpdate::All, true);
     
-    let target = "waybar";
+    // let target = "waybar";
 
     let process = sys.processes()
                      .iter()
