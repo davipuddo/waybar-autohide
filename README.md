@@ -3,7 +3,7 @@ A feature to automatically hide the Waybar while not hovering.
 
 This program uses the cursor's **velocity** as a condition, so if your waybar is not reapearing, you might want to slam your cursor at the top of the screen :)
 
-This feature is **exclusive to Hyprland**, since it uses it's IPC socket go the the current mouse position and the number of active windows.
+This feature is **exclusive to Hyprland**, since it uses it's IPC socket to get the current mouse position and the number of active windows.
 
 # Installation & Setup
 
