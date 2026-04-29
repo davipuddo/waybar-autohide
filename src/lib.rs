@@ -8,8 +8,90 @@ use nix::{
 use std::{
     io::{Read, Write},
     os::unix::net::UnixStream,
+    env
 };
 
+// ===== Parameters =====
+
+#[derive(Debug, Clone)]
+pub struct Params {
+    pub sleep_time: u32,
+    pub vel_threshold: i16,
+    pub pos_threshold: i16,
+    pub max_retry: i8,
+    pub retry_delay: u8,
+    pub process_name: String
+}
+
+impl Default for Params {
+    fn default() -> Self {
+        let args: Vec<String> = env::args().collect();
+
+        let mut i = 1;              // skip first
+        let n = args.len();
+
+        let mut sleep_time = 1;
+        let mut vel_threshold = 15;
+        let mut pos_threshold = 60;
+        let mut max_retry = 5;
+        let mut retry_delay = 5;
+        let mut process_name = String::from("waybar");
+
+        while i < n {
+            match args[i].as_str() {
+                "--name" => {
+                    if i+1 < n {
+                        process_name = args[i+1].clone();
+                        i+=1; // skip next
+                    } else { eprintln!("An aditional parameter is required for [--name]"); }
+                },
+                "--max-retry" => {
+                    if i+1 < n {
+                        max_retry = args[i+1].parse::<i8>().expect("Invalid number after\"--max-retry\"");
+                        i+=1;
+                    } else { eprintln!("An aditional parameter is required for [--max_retry]"); }
+                },
+                "--sleep-time" => {
+                    if i+1 < n {
+                        sleep_time = args[i+1].parse::<u32>().expect("Invalid number after\"--sleep-time\"");
+                        i+=1;
+                    } else { eprintln!("An aditional parameter is required for [--sleep_time]"); }
+                },
+                "--vel-threshold" => {
+                    if i+1 < n {
+                        vel_threshold = args[i+1].parse::<i16>().expect("Invalid number after\"--vel-threshold\"");
+                        i+=1;
+                    } else { eprintln!("An aditional parameter is required for [--vel-threshold]"); }
+                },
+                "--pos-threshold" => {
+                    if i+1 < n {
+                        pos_threshold = args[i+1].parse::<i16>().expect("Invalid number after\"--pos-threshold\"");
+                        i+=1;
+                    } else { eprintln!("An aditional parameter is required for [--pos-threshold]"); }
+                },
+                "--retry-delay" => {
+                    if i+1 < n {
+                        retry_delay = args[i+1].parse::<u8>().expect("Invalid number after\"--retry-delay\"");
+                        i+=1;
+                    } else { eprintln!("An aditional parameter is required for [--retry_delay]"); }
+                },
+                &_ => {
+                    println!("Unknow parameter: [{}]", args[i].as_str());
+                }
+            }
+            i += 1;
+        }
+
+        Params {
+            sleep_time,
+            vel_threshold,
+            pos_threshold,
+            max_retry,
+            retry_delay,
+            process_name,
+        }
+    }
+}
 
 // ===== Methods =====
 
