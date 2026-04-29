@@ -125,7 +125,7 @@ pub fn toggle_waybar(raw_pid: i32) {
     }
 }
 
-// Returns the current cursors's Y position using IPC
+// Returns the cursors's current Y position using IPC
 pub fn get_pos(socket_path : &String) -> i16 {
     if let Ok(mut stream) = UnixStream::connect(socket_path) { // Connection is closed
                                                                // automatically
@@ -183,7 +183,7 @@ pub fn get_workspace_windows(socket_path : &String) -> i16 {
     0
 }
 
-// Returns if the current active window is in fullscream
+// Returns if the current active window is in fullscreen
 pub fn get_windows_fullscreen(socket_path : &String) -> i16 {
     if let Ok(mut stream) = UnixStream::connect(socket_path) { // Connection is closed
                                                                // automatically

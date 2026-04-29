@@ -3,7 +3,7 @@ A feature to automatically hide the Waybar while not hovering.
 
 This program uses the cursor's **velocity** as a condition, so if your waybar is not reapearing, you might want to slam your cursor at the top of the screen :)
 
-This feature is **exclusive to Hyprland**, since it uses it's IPC socket go the the current mouse position and the number of active windows.
+This feature is **exclusive to Hyprland**, since it uses it's IPC socket to get the current mouse position and the number of active windows.
 
 # Installation & Setup
 
@@ -37,7 +37,8 @@ Optionally, you can use the following arguments (Followed by a suitable value) t
     - Default value: 5
 - `--pos-threshold` -> Mouse position threshold
     - Default value: 60
-- `--sleep-time` -> Time to sleep in milliseconds
+- `--sleep-time` -> Delay between checks in milliseconds (smaller values will decrease the latency of autohide at the cost of your CPU)
     - Default value: 50
-- `--vel-threshold` -> Velocity is NOT normalized with sleep time, so a change in SLEEP_TIME may also require a change in VEL_THRESHOLD
+- `--vel-threshold` -> Minimum velocity to open the Waybar
     - Default value: 50
+    - **Warning**: Velocity is **NOT** normalized with sleep time, so a change in `SLEEP_TIME` may also require a change in `VEL_THRESHOLD`
