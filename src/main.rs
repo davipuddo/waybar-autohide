@@ -93,7 +93,7 @@ fn main() {
                 sleep(Duration::from_millis(params.sleep_time as u64));
             }
         } 
-        else 
+        else // Window detect
         {
 
             loop {
