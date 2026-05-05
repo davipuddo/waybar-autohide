@@ -53,13 +53,60 @@ fn main() {
     } else {
 
         // Hide / Show logic
-        
         toggle_waybar(pid);
         let mut ypos = get_pos(&socket_path);  
 
-        loop {
-            let windows = get_workspace_windows(&socket_path);
-            if windows > 0 {
+        if !params.window_detect { // No window detect
+
+            loop {
+                let windows = get_workspace_windows(&socket_path);
+                if windows > 0 {
+                    let fullscreen = get_windows_fullscreen(&socket_path);
+                    if fullscreen == 0 {
+                        let mut new_ypos = get_pos(&socket_path);
+                        let vel = ypos - new_ypos;
+
+                        if (vel > params.vel_threshold) && (new_ypos < params.pos_threshold) {
+                            toggle_waybar(pid);
+                            while new_ypos < params.pos_threshold {
+                                new_ypos = get_pos(&socket_path);
+                                sleep(Duration::from_millis(params.sleep_time as u64));
+                            }
+                            toggle_waybar(pid);
+                        }
+                        ypos = new_ypos;
+                    }
+                } else {
+                    let mut new_ypos = get_pos(&socket_path);
+                    let vel = ypos - new_ypos;
+
+                    if (vel > params.vel_threshold) && (new_ypos < params.pos_threshold) {
+                        toggle_waybar(pid);
+                        while new_ypos < params.pos_threshold {
+                            new_ypos = get_pos(&socket_path);
+                            sleep(Duration::from_millis(params.sleep_time as u64));
+                        }
+                        toggle_waybar(pid);
+                    }
+                    ypos = new_ypos;
+                }
+                sleep(Duration::from_millis(params.sleep_time as u64));
+            }
+        } 
+        else 
+        {
+
+            loop {
+                let mut windows = get_workspace_windows(&socket_path);
+                if windows == 0 {
+                    toggle_waybar(pid);
+                    while windows == 0 { 
+                        windows = get_workspace_windows(&socket_path); 
+                        sleep(Duration::from_millis(params.sleep_time as u64));
+                    };
+                    toggle_waybar(pid);
+                }
+
                 let fullscreen = get_windows_fullscreen(&socket_path);
                 if fullscreen == 0 {
                     let mut new_ypos = get_pos(&socket_path);
@@ -75,21 +122,8 @@ fn main() {
                     }
                     ypos = new_ypos;
                 }
-            } else {
-                let mut new_ypos = get_pos(&socket_path);
-                let vel = ypos - new_ypos;
-
-                if (vel > params.vel_threshold) && (new_ypos < params.pos_threshold) {
-                    toggle_waybar(pid);
-                    while new_ypos < params.pos_threshold {
-                        new_ypos = get_pos(&socket_path);
-                        sleep(Duration::from_millis(params.sleep_time as u64));
-                    }
-                    toggle_waybar(pid);
-                }
-                ypos = new_ypos;
+                sleep(Duration::from_millis(params.sleep_time as u64));
             }
-            sleep(Duration::from_millis(params.sleep_time as u64));
         }
     }
 }

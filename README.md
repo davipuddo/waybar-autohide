@@ -9,11 +9,8 @@ This feature is **exclusive to Hyprland**, since it uses it's IPC socket to get 
 
 While at the project's root, run:
 ```fish
-# Build default autohide
-cargo build --release --bin autohide
-
-# Build autohide with window detect feature
-cargo build --release --bin autohide_wd
+# Build autohide
+cargo build --release 
 ```
 The binary file will be located at `target/release/`. Now just execute it and the Waybar should hide itself, until you hover over it.
 
@@ -42,3 +39,4 @@ Optionally, you can use the following arguments (Followed by a suitable value) t
 - `--vel-threshold` -> Minimum velocity to open the Waybar
     - Default value: 50
     - **Warning**: Velocity is **NOT** normalized with sleep time, so a change in `SLEEP_TIME` may also require a change in `VEL_THRESHOLD`
+- `--window-detect` -> Waybar will show itself when no windows are opened (not enabled by default)

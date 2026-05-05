@@ -28,7 +28,8 @@ pub struct Params {
     pub pos_threshold: i16,
     pub max_retry: i8,
     pub retry_delay: u8,
-    pub process_name: String
+    pub process_name: String,
+    pub window_detect: bool 
 }
 
 impl Default for Params {
@@ -44,6 +45,7 @@ impl Default for Params {
         let mut max_retry = 5;
         let mut retry_delay = 5;
         let mut process_name = String::from("waybar");
+        let mut window_detect = false;
 
         while i < n {
             match args[i].as_str() {
@@ -83,6 +85,9 @@ impl Default for Params {
                         i+=1;
                     } else { eprintln!("An aditional parameter is required for [--retry_delay]"); }
                 },
+                "--window-detect" => {
+                    window_detect = true;
+                }
                 &_ => {
                     println!("Unknow parameter: [{}]", args[i].as_str());
                 }
@@ -97,6 +102,7 @@ impl Default for Params {
             max_retry,
             retry_delay,
             process_name,
+            window_detect,
         }
     }
 }
