@@ -15,18 +15,6 @@ use autohide::{
     Params,
 };
 
-/*
-*  __CLI_Arguments__
-*
-* --name -> Process name (target)
-* --max-retry -> Max number of retries done if the process Waybar is not found
-* --retry-delay -> Number of seconds to wait before the process is searched again
-* --pos-threshold
-* --sleep-time -> Time to sleep in milliseconds
-* --vel-threshold -> Velocity is NOT normalized with sleep time, so
-*                   a change in SLEEP_TIME may also require a change in
-*                   VEL_THRESHOLD
-*/
 
 // ===== Methods =====
 

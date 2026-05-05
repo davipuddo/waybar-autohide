@@ -13,6 +13,14 @@ use std::{
 
 // ===== Parameters =====
 
+// --name -> Waybar process name
+// --max-retry -> Max number of retries done if the process Waybar is not found
+// --retry-delay -> Number of seconds to wait before the process is searched again
+// --pos-threshold -> Mouse position threshold
+// --sleep-time -> Delay between checks in milliseconds
+// --vel-threshold -> Minimum velocity to open the Waybar
+//      -> Velocity is NOT normalized with sleep time, so a change in SLEEP_TIME may also require a change in VEL_THRESHOLD
+
 #[derive(Debug, Clone)]
 pub struct Params {
     pub sleep_time: u32,
