@@ -39,8 +39,8 @@ impl Default for Params {
         let mut i = 1;              // skip first
         let n = args.len();
 
-        let mut sleep_time = 1;
-        let mut vel_threshold = 15;
+        let mut sleep_time = 50;
+        let mut vel_threshold = 50;
         let mut pos_threshold = 60;
         let mut max_retry = 5;
         let mut retry_delay = 5;
