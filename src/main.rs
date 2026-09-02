@@ -67,8 +67,6 @@ fn main() {
                     if fullscreen == 0 {
                         let mut new_ypos = get_pos(&socket_path);
                         let vel = (ypos - new_ypos).abs();
-                        println!("ypos: {} - new_ypos: {}", ypos, new_ypos);
-                        println!("vel: {}", vel);
 
                         if (vel > params.vel_threshold) && (new_ypos < params.pos_threshold) {
                             toggle_waybar(pid);
